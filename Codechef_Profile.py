@@ -23,19 +23,28 @@ if(req.status_code==200):
     side_nav=soup.find('ul',{'class':'side-nav'})
     span=side_nav.find_all('span')
     label=side_nav.find_all('label')
-    name=span[len(label)+2]
-    name=name.text.strip()
-    name=name[17:len(name)]
+    if(len(span)>len(label)+2):
+        name=span[len(label)+2]
+        name=name.text.strip()
+        name=name[17:len(name)]
 
    
-    print("Name of the user is %s"%(name))
+        print("Name of the user is %s"%(name))
+    if(len(span)<len(label)+2):
+        name=(span[len(label)].text.strip())
+        name=name[17:len(name)]
+        print("Name of the user is %s"%(name))
     print("The codechef rating of the user is %s"%(rating))
     print("Global ranking of user is %s"%(ranking[0].text.strip()))
     print("Country ranking of user is %s"%(ranking[1].text.strip()))
-    for i in range(2,len(label)-1):
-        cl=label[i].text.strip()
-        cs=span[i+3].text.strip()
-        print("%s %s"%(cl,cs))
+    if(len(span)>len(label)+2):
+        for i in range(2,len(label)-1):
+        
+            cl=label[i].text.strip()
+            cs=span[i+3].text.strip()
+            
+            print("%s %s"%(cl,cs))
+            
 
    
   
